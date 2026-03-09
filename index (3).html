@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Корабельні сторінки — літературний клуб Миколаєва</title>
+  <meta name="description" content="Літературний клуб у Миколаєві: рецензії, рекомендації та обговорення книжок про море й мандрівки." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1b33cc;
+      --text:#eaf1ff;
+      --muted:#b9c7e6;
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+      --line:#23365d;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(167,139,250,.22), transparent 55%),
+        radial-gradient(900px 600px at 80% 15%, rgba(125,211,252,.18), transparent 55%),
+        linear-gradient(180deg, #070b14 0%, var(--bg) 70%, #070b14 100%);
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{
+      width:min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 26px 0 70px;
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      min-height: 320px;
+      display:flex;
+      align-items: end;
+      background:
+        linear-gradient(90deg, rgba(7,11,20,.92) 0%, rgba(7,11,20,.72) 55%, rgba(7,11,20,.25) 100%),
+        url("https://sspark.genspark.ai/cfimages?u1=cVvCUo32Ord6FF2jD6m96rcvt99C63ZJjwbMsyJkgPuUm194KPub7dAVUMBFKhoeyeLPEkQibhLhx%2BJ0myc552OHJ3rBUh%2ByWogTOZ9M5rg8IjDKM0SJKBji%2FHNP2lpF%2BHgy%2BgPa8z8UCEZ7pE9yMT8ST2CLXSWj3WxgDGFP68Ro%2F2Wgj7BE1IyVGdydv0XB7jwDEqTfC7Jkohe%2FN6qq%2Fc4PAggNY6WFLP5bu5f%2FOw%3D%3D&u2=BavCmJDJ9j4loWZl&width=2560")
+        center/cover no-repeat;
+    }
+    .hero-inner{ padding: 26px; max-width: 760px; }
+    .badge{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(15,27,51,.55);
+      color: var(--muted);
+      backdrop-filter: blur(8px);
+      font-size: 13px;
+    }
+    .badge img{ width:18px; height:18px; }
+    h1{
+      margin: 10px 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: .2px;
+    }
+    .lead{ margin:0; color: var(--muted); font-size: 16px; }
+
+    /* NAV */
+    .nav{
+      margin: 16px 0 0;
+      display:flex; flex-wrap: wrap; gap:10px;
+    }
+    .nav a{
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(15,27,51,.35);
+    }
+
+    /* SECTIONS */
+    section{
+      margin-top: 26px;
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(15,27,51,.26);
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    }
+    section h2{
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+    .muted{ color: var(--muted); }
+
+    /* GRID CARDS */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card{
+      grid-column: span 6;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow: hidden;
+      box-shadow: 0 12px 26px rgba(0,0,0,.22);
+    }
+    .card-inner{ padding: 14px; display:flex; gap: 14px; }
+    .avatar{
+      width: 84px; min-width: 84px;
+      height: 110px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .card h3{ margin:0; font-size: 18px; }
+    .meta{ margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .review{ margin: 10px 0 0; }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
+    .chip{
+      font-size: 12px;
+      color: #dbe7ff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(7,11,20,.35);
+    }
+
+    /* VIDEO */
+    .video{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      align-items: start;
+    }
+    .frame{
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      background:#000;
+    }
+    .frame iframe{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+    }
+
+    /* FORM */
+    form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    label{ display:block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    input, textarea, select{
+      width:100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(7,11,20,.55);
+      color: var(--text);
+      outline: none;
+    }
+    textarea{ min-height: 98px; resize: vertical; grid-column: span 2; }
+    .full{ grid-column: span 2; }
+    button{
+      cursor:pointer;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(90deg, rgba(125,211,252,.35), rgba(167,139,250,.35));
+      color: var(--text);
+      font-weight: 700;
+    }
+    button:hover{ filter: brightness(1.08); }
+
+    /* FOOTER */
+    footer{
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,.16);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .small{ font-size: 12px; color: var(--muted); }
+
+    @media (max-width: 860px){
+      .card{ grid-column: span 12; }
+      .video{ grid-template-columns: 1fr; }
+      form{ grid-template-columns: 1fr; }
+      textarea, .full{ grid-column: span 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="hero" id="top">
+      <div class="hero-inner">
+        <div class="badge">
+          <img src="https://sspark.genspark.ai/cfimages?u1=FYVcxPdTeJINQ4IeyFswxkkRsTqJECa0Fo1NO4%2FYamjLR5t8gqTx6XRMf8s10xePoNBVn%2FKpjSUV&u2=ZPR8BkBkpojUygNI&width=2560"
+               alt="Іконка відкритої книги" />
+          Миколаїв • читання • обговорення • рекомендації
+        </div>
+
+        <h1>Корабельні сторінки</h1>
+        <p class="lead">
+          Літературний клуб Миколаєва: читаємо книжки про море, шлях і людський вибір,
+          публікуємо міні‑рецензії та збираємося на обговорення.
+        </p>
+
+        <nav class="nav" aria-label="Навігація">
+          <a href="#reviews">Рецензії</a>
+          <a href="#reco">Рекомендації</a>
+          <a href="#meetups">Обговорення</a>
+          <a href="#video">Відео</a>
+          <a href="#sources">Джерела</a>
+        </nav>
+
+        <p class="small" style="margin-top:10px">
+          Фонове фото Миколаєва (панорама): Wikimedia Commons —
+          <a href="https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0_%D0%9C%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D1%94%D0%B2%D0%B0.jpg" target="_blank" rel="noopener">посилання</a>
+        </p>
+      </div>
+    </header>
+
+    <section id="reviews">
+      <h2>Рецензії тижня</h2>
+      <p class="muted">
+        Добірка побудована довкола “морської оптики”: як море оголює характер і перевіряє цінності.
+      </p>
+
+      <div class="grid">
+        <article class="card" id="yanovskyi">
+          <div class="card-inner">
+            <img class="avatar"
+              src="https://sspark.genspark.ai/cfimages?u1=1kldqtLBiUkrZChNVizny1IjEXtPs9oC9Qhf16X0IvJwlvln1U%2F4D1eVbO8RotG5LTWVutujVlQ%2FtFqXUkLVS%2BmIgz70e3SBIeTMjlvYiGXdb31jeOmG&u2=LH5u%2BYZsOeenIPLi&width=2560"
+              alt="Юрій Яновський — портрет" />
+            <div>
+              <h3>Юрій Яновський — «Майстер корабля»</h3>
+              <p class="meta">
+                Автор: <a href="https://commons.wikimedia.org/wiki/File:Yuriy_Yanovskiy.jpg" target="_blank" rel="noopener">портрет (Wikimedia)</a> •
+                Про книжку: <a href="https://uk.wikipedia.org/wiki/%D0%9C%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80_%D0%BA%D0%BE%D1%80%D0%B0%D0%B1%D0%BB%D1%8F" target="_blank" rel="noopener">Wikipedia</a>
+              </p>
+              <p class="review">
+                Роман читається як “журнал плавання” в мистецтві: пам’ять, дружба, праця й мрія
+                складаються в один корпус — як корабель. Особливо добре обговорювати, що для героя
+                важливіше: результат чи сам шлях до нього.
+              </p>
+              <div class="chips">
+                <span class="chip">українська проза</span>
+                <span class="chip">роман‑мемуар</span>
+                <span class="chip">творчість і свобода</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" id="hemingway">
+          <div class="card-inner">
+            <img class="avatar"
+              src="https://sspark.genspark.ai/cfimages?u1=2qbjaq7dug0iYp8iCRwnVNvz%2F86LsHPRH4rKtCKHILwwjCoNUIGmNuoxfEy6UxkZkb7WJ8n%2BFLrJY1liZOKATvQuXXiBL%2B4xqbLUOkM%2F7JFdQI08qa5DwS2eLP4Rpm7PfD36DiU3N03yb6GHNWYkzkFK7mhw0GaHujkLtPOyQLu4LJrgWMeO8ZxgYz%2FKMsoKbJA%3D&u2=n3G9tG0IODp0gT8j&width=2560"
+              alt="Ернест Гемінґвей — портрет" />
+            <div>
+              <h3>Ернест Гемінґвей — «Старий і море»</h3>
+              <p class="meta">
+                Автор: <a href="https://commons.wikimedia.org/wiki/File:Ernest_Hemingway_,_auteur,_kop,_Bestanddeelnr_924-0503_(cropped).jpg" target="_blank" rel="noopener">портрет (Wikimedia)</a> •
+                Про книжку: <a href="https://en.wikipedia.org/wiki/The_Old_Man_and_the_Sea" target="_blank" rel="noopener">Wikipedia</a>
+              </p>
+              <p class="review">
+                Короткий текст, після якого хочеться мовчати: він про гідність, наполегливість і ціну перемоги.
+                Для клубу ідеально обговорювати тезу “людину можна знищити, але не перемогти” —
+                як ви розумієте її сьогодні?
+              </p>
+              <div class="chips">
+                <span class="chip">класика</span>
+                <span class="chip">стійкість</span>
+                <span class="chip">символи моря</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" id="london">
+          <div class="card-inner">
+            <img class="avatar"
+              src="https://sspark.genspark.ai/cfimages?u1=JOgafNDLjJiEysgBHroLAqnpboXxgJRGUtAOkgztFhVlQRQED84HPHz8H%2Fl9LELsVYjGnyxu%2F0s4pWH1sbADRIWjkaaE93PaaF2N3cMAHbIEeTTTuxpQ8I4t4dniPOs2wWMX0OymFOJhBQ%3D%3D&u2=0RFswAF%2BsYIrZbHq&width=2560"
+              alt="Джек Лондон — портрет" />
+            <div>
+              <h3>Джек Лондон — «Морський вовк»</h3>
+              <p class="meta">
+                Автор: <a href="https://commons.wikimedia.org/wiki/File:Portrait_photograph_of_Jack_London.jpg" target="_blank" rel="noopener">портрет (Wikimedia)</a> •
+                Про книжку: <a href="https://en.wikipedia.org/wiki/The_Sea-Wolf" target="_blank" rel="noopener">Wikipedia</a>
+              </p>
+              <p class="review">
+                Пригода, яка швидко стає філософською суперечкою про силу, мораль і “право” домінувати.
+                На обговоренні можна порівняти: хто в книжці справді вільний — інтелектуал чи капітан?
+              </p>
+              <div class="chips">
+                <span class="chip">пригоди</span>
+                <span class="chip">філософія</span>
+                <span class="chip">влада й вибір</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" id="conrad">
+          <div class="card-inner">
+            <img class="avatar"
+              src="https://sspark.genspark.ai/cfimages?u1=ZDlqfCj7FvVQFKohs0DyIs0n5Fa1Z7VxLD5HV9IV%2B%2FZJzULkNVfHKbC8hSPoaCXxV2qIwsCS8QYWzvaH7LQORkM0D7xVIZs4SWwGIoA6h8TqJiAJ&u2=UYyM05OPtkmOXbbO&width=2560"
+              alt="Джозеф Конрад — портрет" />
+            <div>
+              <h3>Джозеф Конрад — «Серце темряви»</h3>
+              <p class="meta">
+                Автор: <a href="https://commons.wikimedia.org/wiki/File:ConradJoseph.jpg" target="_blank" rel="noopener">портрет (Wikimedia)</a> •
+                Про книжку: <a href="https://en.wikipedia.org/wiki/Heart_of_Darkness" target="_blank" rel="noopener">Wikipedia</a>
+              </p>
+              <p class="review">
+                Текст‑подорож: що далі маршрут, то ближчі питання про природу людини й владу.
+                Для клубу підходить формат “кола запитань”: що саме символізує “темрява” і де її межі?
+              </p>
+              <div class="chips">
+                <span class="chip">подорож</span>
+                <span class="chip">етика</span>
+                <span class="chip">символізм</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="small" style="margin-top:12px">
+        Швидкі переходи за авторами: <a href="#yanovskyi">Яновський</a> • <a href="#hemingway">Гемінґвей</a> •
+        <a href="#london">Лондон</a> • <a href="#conrad">Конрад</a>
+      </p>
+    </section>
+
+    <section id="reco">
+      <h2>Літературні рекомендації (що читати далі)</h2>
+      <p class="muted">Можна використати як список для голосування на наступну зустріч.</p>
+
+      <ol>
+        <li><strong>Коротка класика:</strong> один невеликий текст на 1–2 тижні (зручно всім).</li>
+        <li><strong>Український фокус:</strong> один український автор щомісяця (для локальної культурної оптики).</li>
+        <li><strong>Тематичний цикл:</strong> “море і характер”, “подорож і вибір”, “місто біля води”.</li>
+      </ol>
+
+      <ul>
+        <li>Підготуйте 5–7 запитань до обговорення заздалегідь (для рівної участі).</li>
+        <li>Оберіть “цитату зустрічі” — один абзац, який читають уголос.</li>
+        <li>Поділіть зустріч на 3 частини: враження → суперечки/запитання → висновки.</li>
+      </ul>
+    </section>
+
+    <section id="meetups">
+      <h2>Обговорення та запис</h2>
+      <p class="muted">
+        Це демонстраційний варіант “організації обговорення” на сторінці: форма збирає заявки прямо в браузері
+        (без сервера) і показує їх нижче.
+      </p>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 12;">
+          <div class="card-inner" style="flex-direction:column; gap:10px;">
+            <h3 style="margin:0">Правила зустрічі (коротко)</h3>
+            <ul style="margin:0; padding-left:18px;">
+              <li>Без спойлерів до позначки “спойлер‑зона”.</li>
+              <li>Критикуємо ідею/текст, а не людину.</li>
+              <li>Кожен отримує слово: “коло на 1 хвилину” на початку.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <form id="signup">
+        <div>
+          <label for="name">Ім’я</label>
+          <input id="name" name="name" placeholder="Напр.: Марина" required />
+        </div>
+
+        <div>
+          <label for="contact">Контакт (email/нік)</label>
+          <input id="contact" name="contact" placeholder="Напр.: marina@mail.com" required />
+        </div>
+
+        <div class="full">
+          <label for="book">Книжка для наступного обговорення</label>
+          <select id="book" name="book">
+            <option value="Майстер корабля — Юрій Яновський">«Майстер корабля» — Юрій Яновський</option>
+            <option value="Старий і море — Ернест Гемінґвей">«Старий і море» — Ернест Гемінґвей</option>
+            <option value="Морський вовк — Джек Лондон">«Морський вовк» — Джек Лондон</option>
+            <option value="Серце темряви — Джозеф Конрад">«Серце темряви» — Джозеф Конрад</option>
+          </select>
+        </div>
+
+        <textarea id="comment" name="comment" placeholder="Кілька слів: чому хочете обговорити саме цю книжку?"></textarea>
+
+        <button class="full" type="submit">Надіслати заявку</button>
+      </form>
+
+      <div id="result" class="small" style="margin-top:12px;"></div>
+    </section>
+
+    <section id="video">
+      <h2>Відео: як провести гарне обговорення в книжковому клубі</h2>
+      <div class="video">
+        <div class="frame" aria-label="Вбудоване відео YouTube">
+          <iframe
+            src="https://www.youtube.com/embed/yO0AKrqc_9g"
+            title="How to Conduct a Great Book Club Discussion"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div>
+          <h3 style="margin-top:0">Підказка для модератора</h3>
+          <p class="muted">
+            Перед зустріччю оберіть 3 “вузькі” запитання (про сцену/деталь) і 3 “широкі” (про сенс/цінності) —
+            так розмова буде живою та структурованою.
+          </p>
+          <p class="small">
+            Посилання на відео:
+            <a href="https://www.youtube.com/watch?v=yO0AKrqc_9g" target="_blank" rel="noopener">
+              Howcast — How to Conduct a Great Book Club Discussion
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <h2>Інформація про авторів і джерела</h2>
+      <p class="muted">
+        На сторінці використано відкриті джерела для довідок і медіа. Нижче — список посилань, які можна вказати в роботі.
+      </p>
+
+      <h3>Довідкові статті про книжки</h3>
+      <ul>
+        <li>«Майстер корабля» — <a href="https://uk.wikipedia.org/wiki/%D0%9C%D0%B0%D0%B9%D1%81%D1%82%D0%B5%D1%80_%D0%BA%D0%BE%D1%80%D0%B0%D0%B1%D0%BB%D1%8F" target="_blank" rel="noopener">Wikipedia (uk)</a></li>
+        <li>The Old Man and the Sea — <a href="https://en.wikipedia.org/wiki/The_Old_Man_and_the_Sea" target="_blank" rel="noopener">Wikipedia (en)</a></li>
+        <li>The Sea-Wolf — <a href="https://en.wikipedia.org/wiki/The_Sea-Wolf" target="_blank" rel="noopener">Wikipedia (en)</a></li>
+        <li>Heart of Darkness — <a href="https://en.wikipedia.org/wiki/Heart_of_Darkness" target="_blank" rel="noopener">Wikipedia (en)</a></li>
+      </ul>
+
+      <h3>Зображення (з атрибуцією)</h3>
+      <ul>
+        <li>Панорама Миколаєва — <a href="https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0_%D0%9C%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D1%94%D0%B2%D0%B0.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+        <li>Юрій Яновський (портрет) — <a href="https://commons.wikimedia.org/wiki/File:Yuriy_Yanovskiy.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+        <li>Ernest Hemingway (портрет) — <a href="https://commons.wikimedia.org/wiki/File:Ernest_Hemingway_,_auteur,_kop,_Bestanddeelnr_924-0503_(cropped).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+        <li>Jack London (портрет) — <a href="https://commons.wikimedia.org/wiki/File:Portrait_photograph_of_Jack_London.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+        <li>Joseph Conrad (портрет) — <a href="https://commons.wikimedia.org/wiki/File:ConradJoseph.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+        <li>Іконка “Open book” — <a href="https://freesvg.org/open-book" target="_blank" rel="noopener">FreeSVG</a></li>
+      </ul>
+
+      <h3>Відео</h3>
+      <ul>
+        <li>How to Conduct a Great Book Club Discussion — <a href="https://www.youtube.com/watch?v=yO0AKrqc_9g" target="_blank" rel="noopener">YouTube (Howcast)</a></li>
+      </ul>
+
+      <footer>
+        <div>© Навчальний проєкт. Місто: Миколаїв. Тема: морська та мандрівна література.</div>
+        <div style="margin-top:8px"><a href="#top">Угору ↑</a></div>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById('signup');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const contact = document.getElementById('contact').value.trim();
+      const book = document.getElementById('book').value;
+      const comment = document.getElementById('comment').value.trim();
+
+      const safe = (s) => s.replace(/[<>&"]/g, (c) => ({
+        '<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'
+      }[c]));
+
+      result.innerHTML = `
+        <div style="padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(7,11,20,.45)">
+          <strong>Заявку прийнято!</strong><br/>
+          Учасник: <strong>${safe(name)}</strong> (${safe(contact)})<br/>
+          Книжка: <strong>${safe(book)}</strong><br/>
+          ${comment ? ('Коментар: “' + safe(comment) + '”') : '<span class="muted">Коментар не додано.</span>'}
+        </div>
+      `;
+
+      form.reset();
+      document.getElementById('name').focus();
+    });
+  </script>
+</body>
+</html>
